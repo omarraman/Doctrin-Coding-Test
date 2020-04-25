@@ -8,7 +8,6 @@ namespace Doctrin.Services
 {
     public class SettingService : ISettingService
     {
-
         private readonly IUnitOfWork _unitOfWork;
 
         public SettingService(IUnitOfWork unitOfWork)
@@ -16,26 +15,25 @@ namespace Doctrin.Services
             this._unitOfWork = unitOfWork;
         }
 
-
-        public async Task<Setting> Add(int unitId, Setting settingToCreate)
+        public async Task<Setting> AddAsync(int unitId, Setting settingToCreate)
         {
             await _unitOfWork.Settings.Add(unitId,settingToCreate);
             await _unitOfWork.CommitAsync();
             return settingToCreate;
         }
 
-        public async Task Delete(Setting settingToDelete)
+        public async Task DeleteAsync(Setting settingToDelete)
         {
             _unitOfWork.Settings.Remove(settingToDelete);
             await _unitOfWork.CommitAsync();
         }
 
-        public async Task<Setting> GetSettingByUnit(int unitId, string globalId)
+        public async Task<Setting> GetSettingByUnitAsync(int unitId, string globalId)
         {
-            return await _unitOfWork.Settings.GetSettingByUnit(unitId,globalId);
+            return await _unitOfWork.Settings.GetSettingByUnitAsync(unitId,globalId);
         }
 
-        public async Task Update(Setting settingToUpdate, Setting setting)
+        public async Task UpdateAsync(Setting settingToUpdate, Setting setting)
         {
             settingToUpdate.GlobalId = setting.GlobalId;
             settingToUpdate.Value = setting.Value;

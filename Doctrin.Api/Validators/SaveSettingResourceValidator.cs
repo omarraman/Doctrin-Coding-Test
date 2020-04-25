@@ -1,11 +1,7 @@
-﻿using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Doctrin.Api.Resources;
+﻿using Doctrin.Api.Resources;
+using FluentValidation;
 
-namespace Doctrin.Api.Controllers.Validators
+namespace Doctrin.Api.Validators
 {
     public class SaveSettingResourceValidator : AbstractValidator<SaveSettingResource>
     {

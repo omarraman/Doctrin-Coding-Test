@@ -16,7 +16,7 @@ namespace Doctrin.Data.Configurations
                 .WithMany(m => m.Children)
                 .HasForeignKey(m => m.ParentId).OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasData(new Unit { Id = 1, Name = "Root" });
+            builder.HasData(new Unit { Id = 1, Name = "HeadOffice" });
         }
     }
 }

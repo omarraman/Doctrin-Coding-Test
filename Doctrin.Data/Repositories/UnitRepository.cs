@@ -1,8 +1,5 @@
 ﻿using Doctrin.Core.Entities;
 using Doctrin.Core.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Doctrin.Data.Repositories
 {

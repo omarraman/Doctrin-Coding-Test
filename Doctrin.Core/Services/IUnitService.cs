@@ -6,9 +6,9 @@ namespace Doctrin.Core.Services
     public interface IUnitService
     {
         Task<Unit> GetAsync(int id);
-        Task Delete(Unit unitToDelete);
+        Task DeleteAsync(Unit unitToDelete);
 
-        Task<Unit> Add(Unit unitToCreate);
+        Task<Unit> AddAsync(Unit unitToCreate);
 
     }
 }

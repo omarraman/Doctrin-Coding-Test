@@ -12,7 +12,7 @@ namespace Doctrin.Data.Configurations
         public void Configure(EntityTypeBuilder<Setting> builder)
         {
             builder.HasIndex(u => new {u.UnitId, u.GlobalId}).IsUnique();
-            builder.HasData(new Setting {Id = 1, GlobalId = "Opening Hours",UnitId=1,Value="9:00-17:00" });
+            builder.HasData(new Setting {Id = 1, GlobalId = "OpeningHours",UnitId=1,Value="9:00-17:00" });
         }
     }
 }

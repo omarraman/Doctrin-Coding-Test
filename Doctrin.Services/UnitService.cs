@@ -17,14 +17,14 @@ namespace Doctrin.Services
         }
 
 
-        public async Task<Unit> Add(Unit unitToCreate)
+        public async Task<Unit> AddAsync(Unit unitToCreate)
         {
             await _unitOfWork.Units.AddAsync(unitToCreate);
             await _unitOfWork.CommitAsync();
             return unitToCreate;
         }
 
-        public async Task Delete(Unit unitToDelete)
+        public async Task DeleteAsync(Unit unitToDelete)
         {
             _unitOfWork.Units.Remove(unitToDelete);
             await _unitOfWork.CommitAsync();

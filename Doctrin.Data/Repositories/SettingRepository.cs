@@ -1,9 +1,5 @@
 ﻿using Doctrin.Core.Entities;
 using Doctrin.Core.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
@@ -29,7 +25,7 @@ namespace Doctrin.Data.Repositories
             _context.Settings.Remove(settingToRemove);
         }
 
-        public async Task<Setting> GetSettingByUnit(int unitId, string globalId)
+        public async Task<Setting> GetSettingByUnitAsync(int unitId, string globalId)
         {
             return await _context.Settings.SingleOrDefaultAsync((m => m.UnitId == unitId && m.GlobalId == globalId));
         }

@@ -3,12 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29020.237
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Doctrin.Logic", "Doctrin.Logic\Doctrin.Logic.csproj", "{A81AF894-78A6-4DDE-9B43-6AF33ACE97EB}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Doctrin.DbAccess", "Doctrin.DbAccess\Doctrin.DbAccess.csproj", "{9AE7798B-4568-4D6C-88A9-5D4A1FA97C3D}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Doctrin.ServiceLayer", "Doctrin.ServiceLayer\Doctrin.ServiceLayer.csproj", "{B5E2E135-E3E5-4582-A593-90940303AAE9}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Doctrin.Api", "Doctrin.Api\Doctrin.Api.csproj", "{43E4B229-5ADE-46F2-8596-22C81A376C9C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Doctrin.Core", "Doctrin.Core\Doctrin.Core.csproj", "{E97FFFB9-E15A-4744-892E-258A1B1DB6B0}"
@@ -23,18 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A81AF894-78A6-4DDE-9B43-6AF33ACE97EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A81AF894-78A6-4DDE-9B43-6AF33ACE97EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A81AF894-78A6-4DDE-9B43-6AF33ACE97EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A81AF894-78A6-4DDE-9B43-6AF33ACE97EB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9AE7798B-4568-4D6C-88A9-5D4A1FA97C3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9AE7798B-4568-4D6C-88A9-5D4A1FA97C3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9AE7798B-4568-4D6C-88A9-5D4A1FA97C3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9AE7798B-4568-4D6C-88A9-5D4A1FA97C3D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B5E2E135-E3E5-4582-A593-90940303AAE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B5E2E135-E3E5-4582-A593-90940303AAE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B5E2E135-E3E5-4582-A593-90940303AAE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B5E2E135-E3E5-4582-A593-90940303AAE9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{43E4B229-5ADE-46F2-8596-22C81A376C9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{43E4B229-5ADE-46F2-8596-22C81A376C9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43E4B229-5ADE-46F2-8596-22C81A376C9C}.Release|Any CPU.ActiveCfg = Release|Any CPU

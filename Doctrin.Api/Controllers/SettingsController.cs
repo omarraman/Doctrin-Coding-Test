@@ -3,8 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
-using Doctrin.Api.Controllers.Validators;
 using Doctrin.Api.Resources;
+using Doctrin.Api.Validators;
 using Doctrin.Core.Entities;
 using Doctrin.Core.Services;
 using Doctrin.Data;
@@ -14,13 +14,11 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace Doctrin.Web
 {
-	[Route("api/organisation")]
+	[Route("api/organisations/{unitId}/setting")]
 	public class SettingsController  : ControllerBase
     {
-
         private readonly ISettingService _settingService;
         private readonly IUnitService _unitService;
-
         private readonly IMapper _mapper;
 
         public SettingsController(ISettingService settingService,IUnitService unitService, IMapper mapper)
@@ -30,15 +28,15 @@ namespace Doctrin.Web
             _mapper = mapper;
         }
 
-        
-        [HttpGet("{unitId}/settings/{globalId}", Name = "GetSetting")]
+        [HttpGet("{globalId}", Name = "GetSetting")]
         public async Task<ActionResult<SettingResource>> Get(int unitId, string globalId)
         {
-            if (unitId == 0 || globalId == "")
+            if (unitId < 1 || string.IsNullOrWhiteSpace(globalId))
             {
                 return BadRequest();
             }
-            var setting = await _settingService.GetSettingByUnit(unitId, globalId);
+
+            var setting = await _settingService.GetSettingByUnitAsync(unitId, globalId);
 
             if (setting == null)
             {
@@ -52,6 +50,11 @@ namespace Doctrin.Web
         [HttpPost()]
         public async Task<ActionResult<SettingResource>> Post(int unitId, SaveSettingResource saveSettingResource)
         {
+            if (unitId < 1 )
+            {
+                return BadRequest();
+            }
+
             var unit = await _unitService.GetAsync(unitId);
             if (unit == null)
             {
@@ -65,41 +68,48 @@ namespace Doctrin.Web
 
             var settingToCreate = _mapper.Map<SaveSettingResource, Setting>(saveSettingResource);
 
-            var newSetting = await _settingService.Add(unitId, settingToCreate);
+            var newSetting = await _settingService.AddAsync(unitId, settingToCreate);
 
             var settingResource = _mapper.Map<Setting, SettingResource>(newSetting);
 
-            return CreatedAtRoute("GetSetting", new { unitId = newSetting.UnitId, globalId =settingResource.GlobalId  }, settingResource);
+            return CreatedAtRoute("GetSetting", new { unitId = newSetting.UnitId, globalId = settingResource.GlobalId }, settingResource);
         }
 
 
-        [HttpDelete("{unitId}/settings/{globalId}")]
-        public async Task<IActionResult> Delete(int unitId,string globalId)
+        [HttpDelete("{globalId}")]
+        public async Task<IActionResult> Delete(int unitId, string globalId)
         {
-            if (unitId == 0 || globalId=="")
+            if (unitId < 1 || string.IsNullOrWhiteSpace(globalId))
+            {
                 return BadRequest();
+            }
 
-            var setting = await _settingService.GetSettingByUnit(unitId, globalId);
+            var setting = await _settingService.GetSettingByUnitAsync(unitId, globalId);
 
             if (setting == null)
                 return NotFound();
 
-            await _settingService.Delete(setting);
+            await _settingService.DeleteAsync(setting);
 
             return NoContent();
         }
 
         [HttpPatch]
-        public async Task<ActionResult<SettingResource>> Patch(int unitId,string globalId,JsonPatchDocument<SaveSettingResource> patchDocument)
+        public async Task<ActionResult<SettingResource>> Patch(int unitId, string globalId, [FromBody] JsonPatchDocument<SaveSettingResource> patchDocument)
         {
+            if (unitId <1 || string.IsNullOrWhiteSpace(globalId) || patchDocument==null)
+            {
+                return BadRequest();
+            }
+
             var unit = await _unitService.GetAsync(unitId);
-            if (unit==null)
+            if (unit == null)
             {
                 return NotFound();
             }
 
-            var settingToPatchFromRepository = await _settingService.GetSettingByUnit(unitId, globalId);
-            if (settingToPatchFromRepository==null)
+            var settingToPatchFromRepository = await _settingService.GetSettingByUnitAsync(unitId, globalId);
+            if (settingToPatchFromRepository == null)
             {
                 return NotFound();
             }
@@ -110,11 +120,7 @@ namespace Doctrin.Web
 
             var settingToPatchFrom = _mapper.Map<Setting>(settingToPatchResource);
 
-            //await _mapper.Map(settingToPatchResource,settingToPatchFromRepository);
-
-            await _settingService.Update(settingToPatchFromRepository, settingToPatchFrom);
-
-
+            await _settingService.UpdateAsync(settingToPatchFromRepository, settingToPatchFrom);
 
             return Ok(settingToPatchResource);
         }
