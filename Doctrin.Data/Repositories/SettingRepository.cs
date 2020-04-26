@@ -14,13 +14,13 @@ namespace Doctrin.Data.Repositories
             _context = context;
         }
 
-        public async Task Add(int unitId, Setting settingToAdd)
+        public async Task AddSettingForUnitAsync(int unitId, Setting settingToAdd)
         {
             settingToAdd.UnitId = unitId;
             await _context.Settings.AddAsync(settingToAdd);
         }
 
-        public async Task Delete(Setting settingToRemove)
+        public void Delete(Setting settingToRemove)
         {
             _context.Settings.Remove(settingToRemove);
         }

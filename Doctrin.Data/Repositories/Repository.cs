@@ -13,7 +13,7 @@ namespace Doctrin.Data.Repositories
     {
         protected readonly DbContext Context;
 
-        public Repository(DbContext context)
+        protected Repository(DbContext context)
         {
             this.Context = context;
         }

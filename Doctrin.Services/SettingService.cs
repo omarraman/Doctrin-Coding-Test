@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Doctrin.Core.Entities;
 using Doctrin.Core.Repositories;
 using Doctrin.Core.Services;
@@ -17,7 +16,7 @@ namespace Doctrin.Services
 
         public async Task<Setting> AddAsync(int unitId, Setting settingToCreate)
         {
-            await _unitOfWork.Settings.Add(unitId,settingToCreate);
+            await _unitOfWork.Settings.AddSettingForUnitAsync(unitId,settingToCreate);
             await _unitOfWork.CommitAsync();
             return settingToCreate;
         }

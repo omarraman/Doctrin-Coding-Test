@@ -47,7 +47,14 @@ namespace Doctrin.Api.Controllers
             var validationResult = await validator.ValidateAsync(saveUnitResource);
 
             if (!validationResult.IsValid)
-                return BadRequest(validationResult.Errors); 
+                return BadRequest(validationResult.Errors);
+
+            var parentUnit = await _unitService.GetAsync(saveUnitResource.ParentId);
+
+            if (parentUnit==null)
+            {
+                return BadRequest();
+            }
 
             var unitToCreate = _mapper.Map<SaveUnitResource, Unit>(saveUnitResource);
 
@@ -64,7 +71,7 @@ namespace Doctrin.Api.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            if (id == 0)
+            if (id < 2) //don't allow deletion of root unit
                 return BadRequest();
 
             var unit = await _unitService.GetAsync(id);

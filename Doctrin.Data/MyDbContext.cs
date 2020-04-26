@@ -1,7 +1,6 @@
 ﻿using Doctrin.Core.Entities;
 using Doctrin.Data.Configurations;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
 namespace Doctrin.Data
 {
