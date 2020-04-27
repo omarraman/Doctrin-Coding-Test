@@ -8,7 +8,8 @@ namespace Doctrin.Api.Validators
         public SaveUnitResourceValidator()
         {
             RuleFor(a => a.Name)
-                .NotEmpty();
+                .NotEmpty()
+                .MaximumLength(50);
         }
     }
 }

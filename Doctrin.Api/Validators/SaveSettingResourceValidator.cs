@@ -8,10 +8,14 @@ namespace Doctrin.Api.Validators
         public SaveSettingResourceValidator()
         {
             RuleFor(a => a.GlobalId)
-                .NotEmpty();
+                .NotEmpty()
+                .MaximumLength(100)
+                ;
 
             RuleFor(a => a.Value)
-                .NotEmpty();
+                .NotEmpty()
+                .MaximumLength(200)
+                ;
         }
     }
 }

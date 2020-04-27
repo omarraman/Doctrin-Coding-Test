@@ -15,7 +15,7 @@ namespace Doctrin.Data.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ParentId = table.Column<int>(nullable: true),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -55,8 +55,8 @@ namespace Doctrin.Data.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    GlobalId = table.Column<string>(nullable: false),
-                    Value = table.Column<string>(nullable: false),
+                    GlobalId = table.Column<string>(maxLength: 100, nullable: false),
+                    Value = table.Column<string>(maxLength: 200, nullable: false),
                     Inheritable = table.Column<bool>(nullable: false),
                     UnitId = table.Column<int>(nullable: false)
                 },
@@ -121,12 +121,12 @@ namespace Doctrin.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Units",
                 columns: new[] { "Id", "Name", "ParentId" },
-                values: new object[] { 1, "Root", null });
+                values: new object[] { 1, "HeadOffice", null });
 
             migrationBuilder.InsertData(
                 table: "Settings",
                 columns: new[] { "Id", "GlobalId", "Inheritable", "UnitId", "Value" },
-                values: new object[] { 1, "Opening Hours", false, 1, "9:00-17:00" });
+                values: new object[] { 1, "OpeningHours", false, 1, "9:00-17:00" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Calendar_UnitId",

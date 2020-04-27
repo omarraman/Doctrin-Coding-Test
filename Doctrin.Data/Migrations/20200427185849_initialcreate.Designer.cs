@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Doctrin.Data.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20200424182516_initialcreate")]
+    [Migration("20200427185849_initialcreate")]
     partial class initialcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -86,14 +86,16 @@ namespace Doctrin.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("GlobalId")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(100);
 
                     b.Property<bool>("Inheritable");
 
                     b.Property<int>("UnitId");
 
                     b.Property<string>("Value")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(200);
 
                     b.HasKey("Id");
 
@@ -106,7 +108,7 @@ namespace Doctrin.Data.Migrations
                         new
                         {
                             Id = 1,
-                            GlobalId = "Opening Hours",
+                            GlobalId = "OpeningHours",
                             Inheritable = false,
                             UnitId = 1,
                             Value = "9:00-17:00"
@@ -119,7 +121,8 @@ namespace Doctrin.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .HasMaxLength(50);
 
                     b.Property<int?>("ParentId");
 
@@ -133,7 +136,7 @@ namespace Doctrin.Data.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Root"
+                            Name = "HeadOffice"
                         });
                 });
 
