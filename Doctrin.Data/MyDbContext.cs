@@ -8,6 +8,7 @@ namespace Doctrin.Data
     {
         public DbSet<Unit> Units { get; set; }
         public DbSet<Setting> Settings { get; set; }
+        public DbSet<Shitting> Shittings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

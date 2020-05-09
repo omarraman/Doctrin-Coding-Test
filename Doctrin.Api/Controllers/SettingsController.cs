@@ -23,6 +23,12 @@ namespace Doctrin.Api.Controllers
             _mapper = mapper;
         }
 
+
+        #region testregion
+
+        
+
+        #endregion
         [HttpGet("{globalId}", Name = "GetSetting")]
         public async Task<ActionResult<SettingResource>> Get(int unitId, string globalId)
         {

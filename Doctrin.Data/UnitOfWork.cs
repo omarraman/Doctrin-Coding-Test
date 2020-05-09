@@ -9,12 +9,17 @@ namespace Doctrin.Data
         private readonly MyDbContext _context;
         private IUnitRepository _unitRepository;
         private ISettingRepository _settingRepository;
+        private IShittingRepository _shittingRepository;
+        private ICrappingRepository _crappingRepository;
+
         public UnitOfWork(MyDbContext context)
         {
             this._context = context;
         }
 
         public IUnitRepository Units => _unitRepository = _unitRepository ?? new UnitRepository(_context);
+        public IShittingRepository Shittings => _shittingRepository = _shittingRepository?? new ShittingRepository(_context);
+        public ICrappingRepository Crappings => _crappingRepository = _crappingRepository ?? new CrappingRepository(_context);
 
         public ISettingRepository Settings =>
             _settingRepository = _settingRepository ?? new SettingRepository(_context);

@@ -3,7 +3,7 @@ using Doctrin.Core.Attributes;
 
 namespace Doctrin.Core.Entities
 {
-    public class Setting
+    public class Shitting
     {
         public int Id { get; set; }
 
